@@ -5,6 +5,7 @@
 
 # my ignores
 ./конспект
+*.pdf
 
 
 # User-specific files
