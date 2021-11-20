@@ -185,9 +185,9 @@ void Phonebook::input(std::string terminator, std::istream & input, std::ostream
 	PhoneRecord r;											// place for result
 	do {
 		while (true) {										// always
-			r.input();										// input record
+			r.input(input, output, prompt_name, prompt_number);	// input record
 			if (r.getNumber() == terminator) { break; }		// if it's end od the input ask user if he really wanto to exit
-			addRecord(r.getName(), r.getNumber(), false);	// add record to the list
+			addRecord(r);									// add record to the list
 		}
 	} while (!did_user_accept("Do you really want to exit?"));	// continue if user don't want to exit
 }
@@ -196,7 +196,7 @@ void Phonebook::input(size_t amount, std::istream & input, std::ostream & output
 {
 	PhoneRecord r;							// place for input
 	for (size_t i = 0; i < amount; i++) {	// for 'amount' records
-		r.input();							// input
+		r.input(input, output, prompt_name, prompt_number);	// input
 		addRecord(r);						// add record to the list
 	}
 }
