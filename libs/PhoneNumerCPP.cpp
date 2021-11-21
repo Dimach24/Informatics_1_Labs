@@ -93,7 +93,7 @@ void PhoneRecord::setNumber(std::string s, bool filterstr)
 		number.plus = (s[0] == '+');			// set plus if it's necessary
 												// else set no plus
 		number.num = std::stoll(s);				// set number
-	} else {	
+	} else {
 		number = { 0,0 };	// fill number with 0
 	}
 }
@@ -160,13 +160,13 @@ std::vector<PhoneRecord>::iterator Phonebook::findPlaceForRecord(const PhoneReco
 void Phonebook::addRecord(std::string name, std::string number, bool checknum)
 {
 	PhoneRecord r(name, number);								// create record
-	std::vector<PhoneRecord>::iterator i = findPlaceForRecord(r);	//find place for record in the book
+	std::vector<PhoneRecord>::iterator i = findRecord(r);	//find place for record in the book
 	phbook.emplace(i, r);	// adds new record to the list of records
 }
 
 void Phonebook::addRecord(PhoneRecord r)
 {
-	std::vector<PhoneRecord>::iterator i = findPlaceForRecord(r);	//find place for record in the book
+	std::vector<PhoneRecord>::iterator i = findRecord(r);	//find place for record in the book
 	phbook.emplace(i, r);	// adds new record to the list of records
 }
 
