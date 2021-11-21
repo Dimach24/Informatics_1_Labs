@@ -213,7 +213,7 @@ std::vector<PhoneRecord>::iterator Phonebook::findRecord(const PhoneRecord& r)
 {
 	size_t left_border=0, right_border=phbook.size()-1;
 	size_t m;
-	while (left_border != right_border) {
+	while ( right_border-left_border > 1) {
 		m = left_border + right_border;
 		m /= 2;
 		if (phbook[m] > r) { right_border = m; }
