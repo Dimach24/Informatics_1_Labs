@@ -209,15 +209,19 @@ void Phonebook::print(size_t name_length, std::ostream & output, char filler)
 	}
 }
 
-std::vector<PhoneRecord>::iterator Phonebook::findRecord(const PhoneRecord& r)
+std::vector<PhoneRecord>::iterator Phonebook::findRecord(const PhoneRecord & rec)
 {
-	size_t left_border=0, right_border=phbook.size()-1;
+	if (!phbook.size()) { return phbook.begin(); }
+	size_t l = static_cast<size_t>(-1ll), r = phbook.size();
 	size_t m;
-	while ( right_border-left_border > 1) {
-		m = left_border + right_border;
+	while (r - l > 1) {
+		m = r + l;
 		m /= 2;
-		if (phbook[m] > r) { right_border = m; }
-		else { left_border = m; }
+		if (phbook[m] > rec) {
+			r = m;
+		} else {
+			l = m;
+		}
 	}
-	return phbook.begin()+left_border;
+	return phbook.begin()+1+l;
 }
