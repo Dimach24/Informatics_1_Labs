@@ -5,7 +5,7 @@
 
 #include <string>		// for std::string class and string functions
 #include <iostream>		// input-output streams lib
-#include <list>			// for list container
+#include <vector>		// for vector container
 
 /// <summary>
 /// Types of string align
@@ -148,14 +148,14 @@ protected:
 	/// The member of Standard Template Library,
 	/// that represents an two-linked list.
 	/// </summary>
-	std::list<PhoneRecord> phbook;
+	std::vector<PhoneRecord> phbook;
 
 	/// <summary>
 	/// find lexicographically correct place for record
 	/// </summary>
 	/// <param name="r">- record</param>
 	/// <returns>iterator to the place</returns>
-	std::list<PhoneRecord>::iterator findPlaceForRecord(const PhoneRecord& r);
+	std::vector<PhoneRecord>::iterator findPlaceForRecord(const PhoneRecord& r);
 public:
 
 	/// <summary>

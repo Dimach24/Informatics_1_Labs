@@ -147,9 +147,9 @@ bool operator>=(const PhoneRecord & a, const PhoneRecord & b) { return a.nicknam
 
 //								 Phonebook methods:
 
-std::list<PhoneRecord>::iterator Phonebook::findPlaceForRecord(const PhoneRecord & r)
+std::vector<PhoneRecord>::iterator Phonebook::findPlaceForRecord(const PhoneRecord & r)
 {
-	for (std::list<PhoneRecord>::iterator i = phbook.begin(); i != phbook.end(); i++) {
+	for (std::vector<PhoneRecord>::iterator i = phbook.begin(); i != phbook.end(); i++) {
 		if (*i > r) {	//if i becomes less (lexicographically) than new record
 			return i;
 		}
@@ -160,13 +160,13 @@ std::list<PhoneRecord>::iterator Phonebook::findPlaceForRecord(const PhoneRecord
 void Phonebook::addRecord(std::string name, std::string number, bool checknum)
 {
 	PhoneRecord r(name, number);								// create record
-	std::list<PhoneRecord>::iterator i = findPlaceForRecord(r);	//find place for record in the book
+	std::vector<PhoneRecord>::iterator i = findPlaceForRecord(r);	//find place for record in the book
 	phbook.emplace(i, r);	// adds new record to the list of records
 }
 
 void Phonebook::addRecord(PhoneRecord r)
 {
-	std::list<PhoneRecord>::iterator i = findPlaceForRecord(r);	//find place for record in the book
+	std::vector<PhoneRecord>::iterator i = findPlaceForRecord(r);	//find place for record in the book
 	phbook.emplace(i, r);	// adds new record to the list of records
 }
 
@@ -203,7 +203,7 @@ void Phonebook::print(size_t name_length, std::ostream & output, char filler)
 	output << "Printing phonebook with " << phbook.size() << " records:\n";					// message
 	output << " #   " << " name" << inflate_string("number ", name_length + 16, StrAlign::right) << '\n';	// table header
 	size_t n = 0;																			// counter
-	for (std::list<PhoneRecord>::iterator i = phbook.begin(); i != phbook.end(); i++) {		// for each record in records
+	for (std::vector<PhoneRecord>::iterator i = phbook.begin(); i != phbook.end(); i++) {		// for each record in records
 		output << ' ' << inflate_string(std::to_string(++n), 4);							// print # of element
 		(*i).print(name_length, output, filler);											// print table row
 	}
