@@ -1,4 +1,6 @@
-﻿#include <iostream>				// input-output streams library
+﻿//Lab5.cpp
+
+#include <iostream>				// input-output streams library
 #include "../libs/PhoneNumerCPP.h"	// phonebook lib
 #include <process.h>			// for 'system' functions
 int main()
