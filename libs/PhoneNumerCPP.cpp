@@ -161,13 +161,13 @@ void Phonebook::addRecord(std::string name, std::string number, bool checknum)
 {
 	PhoneRecord r(name, number);								// create record
 	std::vector<PhoneRecord>::iterator i = findRecord(r);	//find place for record in the book
-	phbook.emplace(i, r);	// adds new record to the list of records
+	phbook.emplace(i, r);	// adds new record to the vector of records
 }
 
 void Phonebook::addRecord(PhoneRecord r)
 {
 	std::vector<PhoneRecord>::iterator i = findRecord(r);	//find place for record in the book
-	phbook.emplace(i, r);	// adds new record to the list of records
+	phbook.emplace(i, r);	// adds new record to the vector of records
 }
 
 void Phonebook::inputRecord(std::istream & input, std::ostream & output, std::string prompt_name, std::string prompt_number)
@@ -184,7 +184,7 @@ void Phonebook::input(std::string terminator, std::istream & input, std::ostream
 		while (true) {										// always
 			r.input(input, output, prompt_name, prompt_number);	// input record
 			if (r.getNumber() == terminator) { break; }		// if it's end od the input ask user if he really wanto to exit
-			addRecord(r);									// add record to the list
+			addRecord(r);									// add record to the vector
 		}
 	} while (!did_user_accept("Do you really want to exit?"));	// continue if user don't want to exit
 }
@@ -194,7 +194,7 @@ void Phonebook::input(size_t amount, std::istream & input, std::ostream & output
 	PhoneRecord r;							// place for input
 	for (size_t i = 0; i < amount; i++) {	// for 'amount' records
 		r.input(input, output, prompt_name, prompt_number);	// input
-		addRecord(r);						// add record to the list
+		addRecord(r);						// add record to the vector
 	}
 }
 

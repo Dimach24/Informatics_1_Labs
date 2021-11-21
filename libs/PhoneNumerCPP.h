@@ -145,8 +145,8 @@ class Phonebook {
 protected:
 
 	/// <summary>
-	/// The member of Standard Template Library,
-	/// that represents an two-linked list.
+	/// The member of Standard Template Library, 
+	/// that storages my phone records
 	/// </summary>
 	std::vector<PhoneRecord> phbook;
 
