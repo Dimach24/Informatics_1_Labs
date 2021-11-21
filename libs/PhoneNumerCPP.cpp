@@ -84,20 +84,15 @@ std::string PhoneRecord::filter(const std::string & s)
 
 void PhoneRecord::setNumber(std::string s, bool filterstr)
 {
-	if (!s.size()) {		// if string is empty
-		number = { 0,0 };	// fill number witf 0
-		return;
-	}
 	if (filterstr) {						//if we need filter string
 		s = filter(s);						// filter string
 	}
 	if (s.size()) {
-		if (s[0] == '+') { number.plus = 1; }	// set plus if it's necessary
-		else { number.plus = 0; }				// else set no plus
+		number.plus = (s[0] == '+');			// set plus if it's necessary
+												// else set no plus
 		number.num = std::stoll(s);				// set number
-	} else {
-		number.plus = 0;
-		number.num=0;
+	} else {	
+		number = { 0,0 };	// fill number with 0
 	}
 }
 
