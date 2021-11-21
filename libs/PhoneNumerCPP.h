@@ -135,7 +135,7 @@ public:
 	/// <param name="name_length">- length of the nickname</param>
 	/// <param name="output">- output stream</param>
 	/// <param name="filler">fills space with it</param>
-	void print(size_t name_length, std::ostream& output, char filler) const;
+	void print(size_t name_length, std::ostream& output = std::cout, char filler=' ') const;
 };
 
 /// <summary>
@@ -222,7 +222,7 @@ public:
 	/// <param name="name_length">- length of the name column</param>
 	/// <param name="output">stream</param>
 	/// <param name="filler">stream</param>
-	void print(size_t name_length, std::ostream& output, char filler);
+	void print(size_t name_length, std::ostream& output = std::cout, char filler = ' ');
 
 	std::vector<PhoneRecord>::iterator findRecord(const PhoneRecord& r);
 };
