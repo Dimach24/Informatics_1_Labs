@@ -208,3 +208,16 @@ void Phonebook::print(size_t name_length, std::ostream & output, char filler)
 		(*i).print(name_length, output, filler);											// print table row
 	}
 }
+
+std::vector<PhoneRecord>::iterator Phonebook::findRecord(const PhoneRecord& r)
+{
+	size_t left_border=0, right_border=phbook.size()-1;
+	size_t m;
+	while (left_border != right_border) {
+		m = left_border + right_border;
+		m /= 2;
+		if (phbook[m] > r) { right_border = m; }
+		else { left_border = m; }
+	}
+	return phbook.begin()+left_border;
+}

@@ -223,6 +223,8 @@ public:
 	/// <param name="output">stream</param>
 	/// <param name="filler">stream</param>
 	void print(size_t name_length, std::ostream& output, char filler);
+
+	std::vector<PhoneRecord>::iterator findRecord(const PhoneRecord& r);
 };
 
 #endif
