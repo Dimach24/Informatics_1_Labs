@@ -150,12 +150,7 @@ protected:
 	/// </summary>
 	std::vector<PhoneRecord> phbook;
 
-	/// <summary>
-	/// find lexicographically correct place for record
-	/// </summary>
-	/// <param name="r">- record</param>
-	/// <returns>iterator to the place</returns>
-	std::vector<PhoneRecord>::iterator findPlaceForRecord(const PhoneRecord& r);
+
 public:
 
 	/// <summary>

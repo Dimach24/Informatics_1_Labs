@@ -147,16 +147,6 @@ bool operator>=(const PhoneRecord & a, const PhoneRecord & b) { return a.nicknam
 
 //								 Phonebook methods:
 
-std::vector<PhoneRecord>::iterator Phonebook::findPlaceForRecord(const PhoneRecord & r)
-{
-	for (std::vector<PhoneRecord>::iterator i = phbook.begin(); i != phbook.end(); i++) {
-		if (*i > r) {	//if i becomes less (lexicographically) than new record
-			return i;
-		}
-	}
-	return phbook.end();
-}
-
 void Phonebook::addRecord(std::string name, std::string number, bool checknum)
 {
 	PhoneRecord r(name, number);								// create record
