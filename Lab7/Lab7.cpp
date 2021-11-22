@@ -12,12 +12,13 @@ int main()
 		std::ifstream fin;
 		//file opening
 		{
-			while (!fin.is_open())
-				std::cout << "Input file path:";
-			getline(std::cin, answer, '\n');
-			fin.open(answer);
-			if (!fin.is_open()) {
-				std::cerr << "Can't open the file" << std::endl;
+			while (!fin.is_open()) {
+				std::cout << "Input file path:\n";
+				getline(std::cin, answer, '\n');
+				fin.open(answer);
+				if (!fin.is_open()) {
+					std::cerr << "Can't open the file" << std::endl;
+				}
 			}
 		}
 		pb.inputFromFile(fin);
@@ -29,12 +30,13 @@ int main()
 		std::ofstream fout;
 		//file opening
 		{
-			while (!fout.is_open())
-				std::cout << "Input file path:";
-			getline(std::cin, answer, '\n');
-			fout.open(answer);
-			if (!fout.is_open()) {
-				std::cerr << "Can't open the file" << std::endl;
+			while (!fout.is_open()) {
+				std::cout << "Input file path:\n";
+				getline(std::cin, answer, '\n');
+				fout.open(answer);
+				if (!fout.is_open()) {
+					std::cerr << "Can't open the file" << std::endl;
+				}
 			}
 		}
 		pb.print(40, fout, '.');
