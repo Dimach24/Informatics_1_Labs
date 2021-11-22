@@ -2,6 +2,8 @@
 //
 
 #include "../libs/PhoneNumerCPP.h"
+#include <iostream>
+#include <process.h>
 
 int main()
 {
