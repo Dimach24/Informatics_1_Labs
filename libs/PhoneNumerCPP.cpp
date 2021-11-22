@@ -178,7 +178,14 @@ void Phonebook::input(std::string terminator, std::istream & input, std::ostream
 		}
 	} while (!did_user_accept("Do you really want to exit?"));	// continue if user don't want to exit
 }
-
+void Phonebook::inputFromFile(std::ifstream & fin)
+{
+	PhoneRecord r;
+	while (fin.good()) {
+		r.input(fin, std::cout,"","");
+		addRecord(r);
+	}
+}
 void Phonebook::input(size_t amount, std::istream & input, std::ostream & output, std::string prompt_name, std::string prompt_number)
 {
 	PhoneRecord r;							// place for input

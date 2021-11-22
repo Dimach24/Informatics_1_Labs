@@ -6,6 +6,7 @@
 #include <string>		// for std::string class and string functions
 #include <iostream>		// input-output streams lib
 #include <vector>		// for vector container
+#include <fstream>
 
 /// <summary>
 /// Types of string align
@@ -210,6 +211,8 @@ public:
 		std::ostream& output = std::cout,
 		std::string prompt_name = "Input nickname\n>>> ",
 		std::string prompt_number = "Input number\n>>> ");
+
+	void inputFromFile(std::ifstream & fin);
 
 	/// <summary>
 	/// prints phonebook in the table
