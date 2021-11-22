@@ -1,5 +1,4 @@
-﻿// Lab6.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-//
+﻿// Lab6.cpp 
 
 #include "../libs/PhoneNumerCPP.h"
 #include <iostream>
