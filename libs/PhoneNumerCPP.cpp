@@ -200,7 +200,7 @@ void Phonebook::print(size_t name_length, std::ostream & output, char filler)
 	output << "Printing phonebook with " << phbook.size() << " records:\n";					// message
 	output << " #   " << " name" << inflate_string("number ", name_length + 16, StrAlign::right) << '\n';	// table header
 	size_t n = 0;																			// counter
-	for (std::vector<PhoneRecord>::iterator i = phbook.begin(); i != phbook.end(); i++) {		// for each record in records
+	for (std::vector<PhoneRecord>::const_iterator i = phbook.cbegin(); i != phbook.cend(); i++) {		// for each record in records
 		output << ' ' << inflate_string(std::to_string(++n), 4);							// print # of element
 		(*i).print(name_length, output, filler);											// print table row
 	}
