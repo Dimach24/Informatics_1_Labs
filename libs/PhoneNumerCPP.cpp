@@ -180,10 +180,10 @@ void Phonebook::input(std::string terminator, std::istream & input, std::ostream
 }
 void Phonebook::inputFromFile(std::ifstream & fin)
 {
-	PhoneRecord r;
-	while (fin.good()) {
-		r.input(fin, std::cout,"","");
-		addRecord(r);
+	PhoneRecord r;						// buffer PhoneRecord
+	while (fin.good()) {				// while there is no EOF
+		r.input(fin, std::cout,"","");	// input record
+		addRecord(r);					// add record to the phonebook
 	}
 }
 void Phonebook::input(size_t amount, std::istream & input, std::ostream & output, std::string prompt_name, std::string prompt_number)
@@ -208,17 +208,17 @@ void Phonebook::print(size_t name_length, std::ostream & output, char filler)
 
 std::vector<PhoneRecord>::iterator Phonebook::findRecord(const PhoneRecord & rec)
 {
-	if (!phbook.size()) { return phbook.begin(); }
-	size_t l = static_cast<size_t>(-1ll), r = phbook.size();
-	size_t m;
-	while (r - l > 1) {
-		m = r + l;
-		m /= 2;
-		if (phbook[m] > rec) {
-			r = m;
-		} else {
-			l = m;
+	if (!phbook.size()) { return phbook.begin(); }			// if phonebook is empty - push first
+	size_t l = static_cast<size_t>(-1ll), r = phbook.size();// l=0xFFF...F=-1 - left border, r - right border
+	size_t m;												// middle
+	while (r - l > 1) {										// while element is not found
+		m = r + l;											//
+		m /= 2;												// middle index calculated
+		if (phbook[m] > rec) {								// if searching placed before
+			r = m;											// move right border
+		} else {											// else
+			l = m;											// move left border
 		}
 	}
-	return phbook.begin()+1+l;
+	return phbook.begin()+1+l;								// return iterator to this element
 }

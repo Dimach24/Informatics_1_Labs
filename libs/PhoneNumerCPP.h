@@ -212,6 +212,11 @@ public:
 		std::string prompt_name = "Input nickname\n>>> ",
 		std::string prompt_number = "Input number\n>>> ");
 
+
+	/// <summary>
+	/// Input records from file till the end of it
+	/// </summary>
+	/// <param name="fin">- input file stream</param>
 	void inputFromFile(std::ifstream & fin);
 
 	/// <summary>
@@ -222,6 +227,12 @@ public:
 	/// <param name="filler">stream</param>
 	void print(size_t name_length, std::ostream& output = std::cout, char filler = ' ');
 
+	/// <summary>
+	/// Binary search
+	/// Find nearest record (lexicographically) in the book
+	/// </summary>
+	/// <param name="r">- record</param>
+	/// <returns>iterator to the record</returns>
 	std::vector<PhoneRecord>::iterator findRecord(const PhoneRecord& r);
 };
 
