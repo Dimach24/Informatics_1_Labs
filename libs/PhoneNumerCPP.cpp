@@ -214,7 +214,7 @@ std::vector<PhoneRecord>::iterator Phonebook::findRecord(const PhoneRecord & rec
 	while (r - l > 1) {										// while element is not found
 		m = r + l;											//
 		m /= 2;												// middle index calculated
-		if (phbook[m] > rec) {								// if searching placed before
+		if (phbook[m] >= rec) {								// if searching placed before
 			r = m;											// move right border
 		} else {											// else
 			l = m;											// move left border
