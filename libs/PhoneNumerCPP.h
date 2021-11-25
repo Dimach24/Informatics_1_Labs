@@ -6,7 +6,7 @@
 #include <string>		// for std::string class and string functions
 #include <iostream>		// input-output streams lib
 #include <vector>		// for vector container
-#include <fstream>
+#include <fstream>		// for file stream 
 
 /// <summary>
 /// Types of string align
