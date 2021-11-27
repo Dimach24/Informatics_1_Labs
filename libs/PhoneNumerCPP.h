@@ -43,6 +43,18 @@ protected:
 	friend bool operator<=(const PhoneRecord& a, const PhoneRecord& b);
 	friend bool operator>=(const PhoneRecord& a, const PhoneRecord& b);
 
+	/// <summary>
+	/// case-insensitive record names compairing
+	/// </summary>
+	/// <param name="a"></param>
+	/// <param name="b"></param>
+	/// <returns>
+	/// -1	if first record name is more than second,
+	/// 0	if records names are equal,
+	/// 1	if second record name is more than first.
+	/// </returns>
+	friend int8_t compair(const PhoneRecord& a, const PhoneRecord& b);
+
 
 	/// <summary>
 	/// Filters string (excludes all symbols except digits and '+' if it's the first one)

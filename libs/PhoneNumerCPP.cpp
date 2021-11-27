@@ -137,7 +137,22 @@ bool operator==(const PhoneRecord & a, const PhoneRecord & b) { return a.nicknam
 bool operator<=(const PhoneRecord & a, const PhoneRecord & b) { return a.nickname <= b.nickname; }
 bool operator>=(const PhoneRecord & a, const PhoneRecord & b) { return a.nickname >= b.nickname; }
 
-
+int8_t compair(const PhoneRecord& a, const PhoneRecord& b){
+	size_t al = a.nickname.size(), bl = b.nickname.size();						// characters amount
+		for (size_t ai = 0, bi = 0; ai < al && bi < bl; ai++, bi++) {			// for each char
+			char ac = tolower(a.nickname[ai]), bc = tolower(b.nickname[bi]);	// changing case if it needs
+			if (ai > bi) {														
+			// if current a char is more than current b char
+				return 1;
+			} else if (ai < bi) {
+			// if current b char is more than current a char
+				return -1;
+			}
+	}
+		if (al == bl) { return 0; }		// equal strings
+		if (al < bl) { return -1; }		// a is substr of b
+		return 1;						// b is substr of a
+	}
 
 
 
