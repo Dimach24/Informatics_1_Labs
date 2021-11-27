@@ -131,28 +131,30 @@ void PhoneRecord::print(size_t name_length, std::ostream & output, char filler) 
 
 // There is definition of comparison operators below
 // comparison by nickname with standard std::string comparison operators
+// NOTA BENE: case-sensitive
 bool operator<(const PhoneRecord & a, const PhoneRecord & b) { return a.nickname < b.nickname; }
 bool operator>(const PhoneRecord & a, const PhoneRecord & b) { return a.nickname > b.nickname; }
 bool operator==(const PhoneRecord & a, const PhoneRecord & b) { return a.nickname == b.nickname; }
 bool operator<=(const PhoneRecord & a, const PhoneRecord & b) { return a.nickname <= b.nickname; }
 bool operator>=(const PhoneRecord & a, const PhoneRecord & b) { return a.nickname >= b.nickname; }
 
-int8_t compair(const PhoneRecord& a, const PhoneRecord& b){
+int8_t compair(const PhoneRecord & a, const PhoneRecord & b)
+{
 	size_t al = a.nickname.size(), bl = b.nickname.size();						// characters amount
-		for (size_t ai = 0, bi = 0; ai < al && bi < bl; ai++, bi++) {			// for each char
-			char ac = tolower(a.nickname[ai]), bc = tolower(b.nickname[bi]);	// changing case if it needs
-			if (ac > bc) {														
+	for (size_t ai = 0, bi = 0; ai < al && bi < bl; ai++, bi++) {			// for each char
+		char ac = tolower(a.nickname[ai]), bc = tolower(b.nickname[bi]);	// changing case if it needs
+		if (ac > bc) {
 			// if current a char is more than current b char
-				return 1;
-			} else if (ac < bc) {
+			return 1;
+		} else if (ac < bc) {
 			// if current b char is more than current a char
-				return -1;
-			}
+			return -1;
+		}
 	}
-		if (al == bl) { return 0; }		// equal strings
-		if (al < bl) { return -1; }		// a is substr of b
-		return 1;						// b is substr of a
-	}
+	if (al == bl) { return 0; }		// equal strings
+	if (al < bl) { return -1; }		// a is substr of b
+	return 1;						// b is substr of a
+}
 
 
 
@@ -197,7 +199,7 @@ void Phonebook::inputFromFile(std::ifstream & fin)
 {
 	PhoneRecord r;						// buffer PhoneRecord
 	while (fin.good()) {				// while there is no EOF
-		r.input(fin, std::cout,"","");	// input record
+		r.input(fin, std::cout, "", "");	// input record
 		addRecord(r);					// add record to the phonebook
 	}
 }
@@ -229,11 +231,11 @@ std::vector<PhoneRecord>::iterator Phonebook::findRecord(const PhoneRecord & rec
 	while (r - l > 1) {										// while element is not found
 		m = r + l;											//
 		m /= 2;												// middle index calculated
-		if (compair(phbook[m],rec)!=-1) {					// if searching placed before
+		if (compair(phbook[m], rec) != -1) {				// if searching placed before
 			r = m;											// move right border
 		} else {											// else
 			l = m;											// move left border
 		}
 	}
-	return phbook.begin()+1+l;								// return iterator to this element
+	return phbook.begin() + 1 + l;							// return iterator to this element
 }

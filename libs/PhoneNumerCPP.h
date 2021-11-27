@@ -37,6 +37,7 @@ bool did_user_accept(std::string question);
 class PhoneRecord {
 protected:
 	// There is "friending" of comparison operators below
+	// NOTA BENE: case-sensitive
 	friend bool operator<(const PhoneRecord& a, const PhoneRecord& b);
 	friend bool operator>(const PhoneRecord& a, const PhoneRecord& b);
 	friend bool operator==(const PhoneRecord& a, const PhoneRecord& b);
