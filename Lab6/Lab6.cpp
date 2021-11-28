@@ -1,8 +1,8 @@
 ﻿// Lab6.cpp 
 
-#include "../libs/PhoneNumerCPP.h"
-#include <iostream>
-#include <process.h>
+#include "../libs/PhoneNumerCPP.h"	// my lib
+#include <iostream>					// for std::cout
+#include <process.h>				// for 'system' function
 
 int main()
 {
@@ -12,5 +12,5 @@ int main()
 	if (system(NULL)) {				// if 'system' function is available
 		system("pause");			// do not close console
 	}
-	return 0;
+	return 0;						// Exit success
 }
