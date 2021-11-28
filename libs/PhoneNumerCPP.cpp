@@ -132,15 +132,10 @@ void PhoneRecord::print(size_t name_length, std::ostream & output, char filler) 
 // There is definition of comparison operators below
 // comparison by nickname with standard std::string comparison operators
 // NOTA BENE: case-sensitive
-[[deprecated("Use int8_t compair(const PhoneRecord&, const PhoneRecord&) instead of this")]]
 bool operator<(const PhoneRecord & a, const PhoneRecord & b) { return a.nickname < b.nickname; }
-[[deprecated("Use int8_t compair(const PhoneRecord&, const PhoneRecord&) instead of this")]]
 bool operator>(const PhoneRecord & a, const PhoneRecord & b) { return a.nickname > b.nickname; }
-[[deprecated("Use int8_t compair(const PhoneRecord&, const PhoneRecord&) instead of this")]]
 bool operator==(const PhoneRecord & a, const PhoneRecord & b) { return a.nickname == b.nickname; }
-[[deprecated("Use int8_t compair(const PhoneRecord&, const PhoneRecord&) instead of this")]]
 bool operator<=(const PhoneRecord & a, const PhoneRecord & b) { return a.nickname <= b.nickname; }
-[[deprecated("Use int8_t compair(const PhoneRecord&, const PhoneRecord&) instead of this")]]
 bool operator>=(const PhoneRecord & a, const PhoneRecord & b) { return a.nickname >= b.nickname; }
 
 int8_t compair(const PhoneRecord & a, const PhoneRecord & b)
