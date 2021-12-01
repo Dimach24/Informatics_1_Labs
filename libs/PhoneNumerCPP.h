@@ -31,16 +31,6 @@ std::string inflate_string(std::string s, size_t w, StrAlign a=StrAlign::left, c
 /// <returns>Returns true if user agree, else - false</returns>
 bool did_user_accept(std::string question);
 
-[[deprecated("Use int8_t compair(const PhoneRecord&, const PhoneRecord&) instead of this")]]
- bool operator<(const PhoneRecord& a, const PhoneRecord& b);
- [[deprecated("Use int8_t compair(const PhoneRecord&, const PhoneRecord&) instead of this")]]
-bool operator>(const PhoneRecord& a, const PhoneRecord& b);
-[[deprecated("Use int8_t compair(const PhoneRecord&, const PhoneRecord&) instead of this")]]
-bool operator==(const PhoneRecord& a, const PhoneRecord& b);
-[[deprecated("Use int8_t compair(const PhoneRecord&, const PhoneRecord&) instead of this")]]
-bool operator<=(const PhoneRecord& a, const PhoneRecord& b);
-[[deprecated("Use int8_t compair(const PhoneRecord&, const PhoneRecord&) instead of this")]]
-bool operator>=(const PhoneRecord& a, const PhoneRecord& b);
 
 /// <summary>
 /// Class explaning phonebook record
@@ -162,6 +152,18 @@ public:
 	/// <param name="filler">fills space with it</param>
 	void print(size_t name_length, std::ostream& output = std::cout, char filler=' ') const;
 };
+
+
+[[deprecated("Use int8_t compair(const PhoneRecord&, const PhoneRecord&) instead of this")]]
+bool operator<(const PhoneRecord& a, const PhoneRecord& b);
+[[deprecated("Use int8_t compair(const PhoneRecord&, const PhoneRecord&) instead of this")]]
+bool operator>(const PhoneRecord& a, const PhoneRecord& b);
+[[deprecated("Use int8_t compair(const PhoneRecord&, const PhoneRecord&) instead of this")]]
+bool operator==(const PhoneRecord& a, const PhoneRecord& b);
+[[deprecated("Use int8_t compair(const PhoneRecord&, const PhoneRecord&) instead of this")]]
+bool operator<=(const PhoneRecord& a, const PhoneRecord& b);
+[[deprecated("Use int8_t compair(const PhoneRecord&, const PhoneRecord&) instead of this")]]
+bool operator>=(const PhoneRecord& a, const PhoneRecord& b);
 
 /// <summary>
 /// Class explaining phonedook
