@@ -260,6 +260,12 @@ public:
 	/// <param name="r">- record</param>
 	/// <returns>iterator to the record</returns>
 	std::vector<PhoneRecord>::iterator findRecord(const PhoneRecord& r);
+
+	/// <summary>
+	/// Finds max name length
+	/// </summary>
+	/// <returns>max name lenght</returns>
+	size_t maxNameLength();
 };
 
 #endif
