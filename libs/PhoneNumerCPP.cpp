@@ -243,7 +243,8 @@ std::vector<PhoneRecord>::iterator Phonebook::findRecord(const PhoneRecord & rec
 	return phbook.begin() + 1 + l;							// return iterator to this element
 }
 
-size_t Phonebook::maxNameLength(){
+size_t Phonebook::maxNameLength()
+{
 	size_t mnl = 0;								// current max, min string size is 0
 	for (auto record : phbook) {				// for each record in phbook
 		size_t tmp = record.getName().size();	// get name length
@@ -252,4 +253,4 @@ size_t Phonebook::maxNameLength(){
 		}
 	}
 	return mnl;									// return result
-}
+

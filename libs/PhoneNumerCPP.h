@@ -272,12 +272,12 @@ public:
 	/// imports Phonebook from *idk* format using stream
 	/// </summary>
 	/// <param name="stream"></param>
-	void importPhonebook(std::istream stream);	// TODO
+	void importPhonebook(std::istream& stream);	// TODO
 	/// <summary>
 	/// imports Phonebook to *idk* format using stream
 	/// </summary>
 	/// <param name="stream"></param>
-	void exportPhonebook(std::ostream stream);	// TODO
+	void exportPhonebook(std::ostream& stream);	// TODO
 
 };
 
