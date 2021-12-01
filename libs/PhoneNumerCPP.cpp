@@ -214,6 +214,9 @@ void Phonebook::input(size_t amount, std::istream & input, std::ostream & output
 
 void Phonebook::print(size_t name_length, std::ostream & output, char filler)
 {
+	if (!name_length) {						// if zero
+		name_length = maxNameLength() + 3;	// use max name leght
+	}
 	output << "Printing phonebook with " << phbook.size() << " records:\n";					// message
 	output << " #   " << " name" << inflate_string("number ", name_length + 16, StrAlign::right) << '\n';	// table header
 	size_t n = 0;																			// counter

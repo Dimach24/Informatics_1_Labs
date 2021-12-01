@@ -248,10 +248,10 @@ public:
 	/// <summary>
 	/// prints phonebook in the table
 	/// </summary>
-	/// <param name="name_length">- length of the name column</param>
+	/// <param name="name_length">- length of the name column, if '0' got, programm use (max_length_in_phonebook + 3)</param>
 	/// <param name="output">stream</param>
 	/// <param name="filler">stream</param>
-	void print(size_t name_length, std::ostream& output = std::cout, char filler = ' ');
+	void print(size_t name_length = 0, std::ostream& output = std::cout, char filler = ' ');
 
 	/// <summary>
 	/// Binary search
