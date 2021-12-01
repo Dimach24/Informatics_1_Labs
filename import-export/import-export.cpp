@@ -5,7 +5,6 @@
 #include "../libs/PhoneNumerCPP.h"
 #include <fstream>
 #include <process.h>
-#include <locale>
 
 int main()
 {
