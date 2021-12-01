@@ -92,6 +92,10 @@ protected:
 		uint64_t plus : 1;
 	} number; // object of the nameless struct
 public:
+	struct Field {
+		std::string name;
+		std::string value;
+	};
 
 	/// <summary>
 	/// Number getter
@@ -267,6 +271,8 @@ public:
 	/// <returns>max name lenght</returns>
 	size_t maxNameLength();
 
+
+	void addCSVRecord(std::istream& stream, const std::vector<std::string>& fields);
 
 	/// <summary>
 	/// imports Phonebook from *idk* format using stream

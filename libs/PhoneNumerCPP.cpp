@@ -253,4 +253,67 @@ size_t Phonebook::maxNameLength()
 		}
 	}
 	return mnl;									// return result
+}
 
+
+std::pair<std::string, size_t> get_csv_field(const std::string & s, size_t from, char sep = ',')
+{
+	std::string result = "";
+	bool is_in_quates = false;
+	size_t i = from;
+	for (; i < s.size() && (is_in_quates || s[i] != sep); i++) {
+		if (s[i] == '"') {
+			is_in_quates = !is_in_quates;
+			continue;
+		}
+		result = result + s[i];
+	}
+	return std::pair<std::string, size_t>(result, i + 1);
+}
+void Phonebook::addCSVRecord(std::istream& stream, const std::vector<std::string>& fields)
+{
+	std::string buf;
+	size_t start_i = 0;
+	std::vector<std::string> contact_values;
+	getline(stream, buf, '\n');
+	while (buf.size() > start_i) {
+		std::pair<std::string, size_t> tmp = get_csv_field(buf, start_i);
+		contact_values.push_back(tmp.first);
+		start_i = tmp.second;
+	}
+	if (!contact_values.size()) { return; }
+	std::string name = "", number = "";
+	for (size_t i = 0; i < fields.size(); i++) {
+		if (fields[i] == "Name") {
+			name = contact_values[i];
+		} else if (fields[i] == "Phone 1 - Value") {
+			number = contact_values[i];
+		}
+	}
+	size_t start = 0;
+	
+	while(1) {
+		size_t n = number.find(":::", start); //synonim
+		if (n == std::string::npos) { addRecord(name, number.substr(start)); break; }
+		addRecord(name, number.substr(start, n));
+		start = n + 3;
+	}
+	
+}
+void Phonebook::importPhonebook(std::istream& stream)
+{
+	// import from csv file
+	std::string buf;
+	getline(stream, buf, '\n');
+	std::vector<std::string> fields;
+	size_t start_i = 0;
+	while (buf.size() > start_i) {
+		std::pair<std::string, size_t> tmp = get_csv_field(buf, start_i);
+		fields.push_back(tmp.first);
+		start_i = tmp.second;
+	}
+	while (!stream.eof()) {
+		addCSVRecord(stream, fields);
+	}
+
+}
