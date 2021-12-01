@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{58c500aa-94f7-4846-bf0e-fb6d413bbe99}</ProjectGuid>
-    <RootNamespace>Lab7</RootNamespace>
+    <ProjectGuid>{839fc57b-8fb3-49aa-bef0-019a1228bce3}</ProjectGuid>
+    <RootNamespace>importexport</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -140,7 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\libs\PhoneNumerCPP.cpp" />
-    <ClCompile Include="Lab7.cpp" />
+    <ClCompile Include="import-export.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\libs\PhoneNumerCPP.h" />
