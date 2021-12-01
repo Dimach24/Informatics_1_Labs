@@ -153,7 +153,7 @@ public:
 	void print(size_t name_length, std::ostream& output = std::cout, char filler=' ') const;
 };
 
-
+// Compairing operators deprications
 [[deprecated("Use int8_t compair(const PhoneRecord&, const PhoneRecord&) instead of this")]]
 bool operator<(const PhoneRecord& a, const PhoneRecord& b);
 [[deprecated("Use int8_t compair(const PhoneRecord&, const PhoneRecord&) instead of this")]]
