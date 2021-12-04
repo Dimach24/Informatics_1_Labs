@@ -127,11 +127,15 @@ std::string PhoneRecord::getName()const { return nickname; }	//return nickname
 
 void PhoneRecord::input(std::istream & input, std::ostream & output, std::string prompt_name, std::string prompt_number)
 {
-	std::string name, number;		// variables for name and number
+	std::string name="", number="";		// variables for name and number
 	output << prompt_name;			// prompt for input
-	getline(input, name, '\n');		// input
+	while (name == "") {
+		getline(input, name, '\n');		// input
+	}
 	output << prompt_number;		// prompt for input
+	while(number==""){
 	getline(input, number, '\n');	// input
+	}
 	setName(name);					// set name
 	setNumber(number);				// set number
 }

@@ -229,7 +229,8 @@ public:
 		std::istream& input = std::cin,
 		std::ostream& output = std::cout,
 		std::string prompt_name = "Input nickname\n>>> ",
-		std::string prompt_number = "Input number\n>>> ");
+		std::string prompt_number = "Input number\n>>> ",
+		std::string exit_q="Do you really want to exit?");
 
 	/// <summary>
 	/// Adds "amount" elements from inputs stream
