@@ -31,6 +31,8 @@ std::string inflate_string(std::string s, size_t w, StrAlign a=StrAlign::left, c
 /// <returns>Returns true if user agree, else - false</returns>
 bool did_user_accept(std::string question);
 
+size_t choose_list(size_t n, const char * list);
+
 
 /// <summary>
 /// Class explaning phonebook record

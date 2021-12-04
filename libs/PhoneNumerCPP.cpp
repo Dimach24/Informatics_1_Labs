@@ -51,7 +51,21 @@ bool did_user_accept(std::string question = "Are you sure?")
 	}
 }
 
-
+size_t choose_list(size_t n, const char * list)
+{
+	while (1) {
+		for (size_t i = 0; i < n; i++) {
+			std::cout << '\t' << i + 1 << ". " << list << '\n';
+			list += strlen(list) + 1;
+		}
+		std::cout << ">>> ";
+		size_t answer;
+		std::cin >> answer;
+		if (answer >= 1 && answer <= n) {
+			return answer;
+		}
+	}
+}
 
 
 
