@@ -1,22 +1,23 @@
-﻿// import-export.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-//
-
-#include <iostream>
+﻿
+#include "../libs/utf-8Converting.h"
 #include "../libs/PhoneNumerCPP.h"
+#include <iostream>
 #include <fstream>
 #include <process.h>
-#include <locale>
+
+
 
 int main()
 {
-    setlocale(LC_ALL, "rus");
-    Phonebook pb;
-    std::ifstream fin(R"(C:\Users\D.mon\Documents\учеба\инфа\Chaminov_Dmeatry\Labs\Release\files\contacts.csv)");
-    pb.importPhonebook(fin);
-    pb.print(0,std::cout,'.');
-    if (system(NULL)) {				// if 'system' function is available
-        system("pause");			// do not close console
-    }
-    fin.close();
-    return 0;
+	setlocale(LC_ALL, "rus");
+	std::ifstream fin(R"(C:\Users\D.mon\Documents\учеба\инфа\Chaminov_Dmeatry\Labs\Release\files\contacts.csv)");
+	std::string s;
+	Phonebook pb;
+	pb.importPhonebook(fin);
+	fin.close();
+	pb.print_utf();
+	if (system(NULL)) {				// if 'system' function is available
+		system("pause");			// do not close console
+	}
+	return 0;
 }
