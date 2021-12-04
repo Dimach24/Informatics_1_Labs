@@ -140,10 +140,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\libs\PhoneNumerCPP.cpp" />
+    <ClCompile Include="..\libs\utf-8Converting.cpp" />
     <ClCompile Include="Lab5.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\libs\PhoneNumerCPP.h" />
+    <ClInclude Include="..\libs\utf-8Converting.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

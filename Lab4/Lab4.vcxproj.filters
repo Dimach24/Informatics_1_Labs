@@ -24,12 +24,18 @@
     <ClCompile Include="..\libs\myDecToBinLibFunctions.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="..\libs\utf-8Converting.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\libs\myDecToBinLibFunctions.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="..\libs\myPhoneNumberLib.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\utf-8Converting.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
