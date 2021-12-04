@@ -7,7 +7,7 @@
 #include <iostream>		// input-output streams lib
 #include <vector>		// for vector container
 #include <fstream>		// for file stream 
-
+#include "utf-8Converting.h"
 /// <summary>
 /// Types of string align
 /// </summary>
@@ -154,7 +154,9 @@ public:
 	/// <param name="name_length">- length of the nickname</param>
 	/// <param name="output">- output stream</param>
 	/// <param name="filler">fills space with it</param>
-	void print(size_t name_length, std::ostream& output = std::cout, char filler=' ') const;
+	void print(size_t name_length, std::ostream& output, char filler = ' ') const;
+
+	void print_utf(size_t name_length, std::ostream& output = std::cout, char filler=' ') const;
 };
 
 // Compairing operators deprications
@@ -256,6 +258,8 @@ public:
 	/// <param name="output">stream</param>
 	/// <param name="filler">stream</param>
 	void print(size_t name_length = 0, std::ostream& output = std::cout, char filler = ' ');
+
+	void print_utf(size_t name_length = 0, std::ostream& output = std::cout, char filler = ' ');
 
 	/// <summary>
 	/// Binary search

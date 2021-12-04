@@ -120,12 +120,18 @@ void PhoneRecord::input(std::istream & input, std::ostream & output, std::string
 	setName(name);					// set name
 	setNumber(number);				// set number
 }
-
-void PhoneRecord::print(size_t name_length, std::ostream & output, char filler) const
+void PhoneRecord::print(size_t name_length, std::ostream& output, char filler) const
 {
-	std::string n = inflate_string(nickname, name_length, StrAlign::left, filler);	// format name
+	std::string name = inflate_string(nickname, name_length, StrAlign::left, filler);	// format name
 	std::string num = inflate_string(getNumber(), 20, StrAlign::right, filler);		// format number
-	output << n << num << '\n';														// output
+	output << name << num << '\n';													// output
+}
+void PhoneRecord::print_utf(size_t name_length, std::ostream& output, char filler) const
+{
+	std::string name = UTFtoString(nickname);										// convert from unicode
+	name = inflate_string(name, name_length, StrAlign::left, filler);				// format name
+	std::string num = inflate_string(getNumber(), 20, StrAlign::right, filler);		// format number
+	output << name << num << '\n';													// output
 }
 
 
@@ -212,7 +218,7 @@ void Phonebook::input(size_t amount, std::istream & input, std::ostream & output
 	}
 }
 
-void Phonebook::print(size_t name_length, std::ostream & output, char filler)
+void Phonebook::print(size_t name_length, std::ostream& output, char filler)
 {
 	if (!name_length) {						// if zero
 		name_length = maxNameLength() + 3;	// use max name leght
@@ -223,6 +229,20 @@ void Phonebook::print(size_t name_length, std::ostream & output, char filler)
 	for (std::vector<PhoneRecord>::const_iterator i = phbook.cbegin(); i != phbook.cend(); i++) {		// for each record in records
 		output << ' ' << inflate_string(std::to_string(++n), 4);							// print # of element
 		(*i).print(name_length, output, filler);											// print table row
+	}
+}
+
+void Phonebook::print_utf(size_t name_length, std::ostream & output, char filler)
+{
+	if (!name_length) {						// if zero
+		name_length = maxNameLength() + 3;	// use max name leght
+	}
+	output << "Printing phonebook with " << phbook.size() << " records:\n";					// message
+	output << " #   " << " name" << inflate_string("number ", name_length + 16, StrAlign::right) << '\n';	// table header
+	size_t n = 0;																			// counter
+	for (std::vector<PhoneRecord>::const_iterator i = phbook.cbegin(); i != phbook.cend(); i++) {		// for each record in records
+		output << ' ' << inflate_string(std::to_string(++n), 4);							// print # of element
+		(*i).print_utf(name_length, output, filler);											// print table row
 	}
 }
 
@@ -270,7 +290,7 @@ std::pair<std::string, size_t> get_csv_field(const std::string & s, size_t from,
 	}
 	return std::pair<std::string, size_t>(result, i + 1);
 }
-void Phonebook::addCSVRecord(std::istream& stream, const std::vector<std::string>& fields)
+void Phonebook::addCSVRecord(std::istream & stream, const std::vector<std::string>&fields)
 {
 	std::string buf;
 	size_t start_i = 0;
@@ -291,16 +311,16 @@ void Phonebook::addCSVRecord(std::istream& stream, const std::vector<std::string
 		}
 	}
 	size_t start = 0;
-	
-	while(1) {
+
+	while (1) {
 		size_t n = number.find(":::", start); //synonim
 		if (n == std::string::npos) { addRecord(name, number.substr(start)); break; }
 		addRecord(name, number.substr(start, n));
 		start = n + 3;
 	}
-	
+
 }
-void Phonebook::importPhonebook(std::istream& stream)
+void Phonebook::importPhonebook(std::istream & stream)
 {
 	// import from csv file
 	std::string buf;
