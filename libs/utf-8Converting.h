@@ -12,7 +12,7 @@ std::string UTFtoString(const std::string& str, char fill_unknown_with = '@');
 void UTFout(std::ostream& stream, const char str[], size_t n, char fill_unknown_with = '@');
 
 void UTFout(std::ostream& stream, const std::string& str, char fill_unknown_with = '@');
-
+std::string StringToUTF(std::string s);
 #endif // !MY_UTF-8_CONVERTING_LIB_INCLUDED
 
 

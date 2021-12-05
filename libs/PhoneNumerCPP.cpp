@@ -351,7 +351,7 @@ void Phonebook::exportPhonebook(std::ostream& stream)
 {
 	stream << "Name,Phone 1 - Value" << std::endl;
 	for (auto r : phbook) {
-		stream << '"' << r.getName() << "\"," << r.getNumber() << std::endl;
+		stream << StringToUTF('"' + r.getName() + "\"," +r.getNumber()) << std::endl;
 	}
 }
 
