@@ -349,7 +349,10 @@ void Phonebook::importPhonebook(std::istream & stream)
 
 void Phonebook::exportPhonebook(std::ostream& stream)
 {
-	//TODO
+	stream << "Name,Phone 1 - Value" << std::endl;
+	for (auto r : phbook) {
+		stream << '"' << r.getName() << "\'," << r.getNumber() << std::endl;
+	}
 }
 
 void Phonebook::deleteRecord(std::vector<PhoneRecord>::iterator p_record)
