@@ -51,7 +51,24 @@ bool did_user_accept(std::string question = "Are you sure?")
 	}
 }
 
-
+size_t choose_list(uint16_t n, const char * list, std::ostream& out, std::istream& in)
+{
+	while (1) {
+		const char* s = list;
+		for (size_t i = 0; i < n; i++) {
+			out << '\t' << i + 1 << ". " << s << '\n';
+			s += strlen(s) + 1;
+		}
+		out << ">>> ";
+		std::string answer;
+		getline(in, answer);
+		uint16_t answer_n = atoi(answer.c_str());
+		if (answer_n >= 1 && answer_n <= n) {
+			system("cls");
+			return answer_n;
+		}
+	}
+}
 
 
 
@@ -112,11 +129,15 @@ std::string PhoneRecord::getName()const { return nickname; }	//return nickname
 
 void PhoneRecord::input(std::istream & input, std::ostream & output, std::string prompt_name, std::string prompt_number)
 {
-	std::string name, number;		// variables for name and number
+	std::string name="", number="";		// variables for name and number
 	output << prompt_name;			// prompt for input
-	getline(input, name, '\n');		// input
+	while (name == "") {
+		getline(input, name, '\n');		// input
+	}
 	output << prompt_number;		// prompt for input
+	while(number==""){
 	getline(input, number, '\n');	// input
+	}
 	setName(name);					// set name
 	setNumber(number);				// set number
 }
@@ -190,7 +211,7 @@ void Phonebook::inputRecord(std::istream & input, std::ostream & output, std::st
 	addRecord(r);	// adding result
 }
 
-void Phonebook::input(std::string terminator, std::istream & input, std::ostream & output, std::string prompt_name, std::string prompt_number)
+void Phonebook::input(std::string terminator, std::istream & input, std::ostream & output, std::string prompt_name, std::string prompt_number, std::string exit_q, const char* yes_0_no)
 {
 	PhoneRecord r;											// place for result
 	do {
@@ -199,7 +220,8 @@ void Phonebook::input(std::string terminator, std::istream & input, std::ostream
 			if (r.getNumber() == terminator) { break; }		// if it's end od the input ask user if he really wanto to exit
 			addRecord(r);									// add record to the vector
 		}
-	} while (!did_user_accept("Do you really want to exit?"));	// continue if user don't want to exit
+		output << exit_q<<std::endl;
+	} while (choose_list(2,yes_0_no,output)==2);	// continue if user don't want to exit
 }
 void Phonebook::inputFromFile(std::ifstream & fin)
 {
@@ -223,7 +245,6 @@ void Phonebook::print(size_t name_length, std::ostream& output, char filler)
 	if (!name_length) {						// if zero
 		name_length = maxNameLength() + 3;	// use max name leght
 	}
-	output << "Printing phonebook with " << phbook.size() << " records:\n";					// message
 	output << " #   " << " name" << inflate_string("number ", name_length + 16, StrAlign::right) << '\n';	// table header
 	size_t n = 0;																			// counter
 	for (std::vector<PhoneRecord>::const_iterator i = phbook.cbegin(); i != phbook.cend(); i++) {		// for each record in records
@@ -232,19 +253,7 @@ void Phonebook::print(size_t name_length, std::ostream& output, char filler)
 	}
 }
 
-void Phonebook::print_utf(size_t name_length, std::ostream & output, char filler)
-{
-	if (!name_length) {						// if zero
-		name_length = maxNameLength() + 3;	// use max name leght
-	}
-	output << "Printing phonebook with " << phbook.size() << " records:\n";					// message
-	output << " #   " << " name" << inflate_string("number ", name_length + 16, StrAlign::right) << '\n';	// table header
-	size_t n = 0;																			// counter
-	for (std::vector<PhoneRecord>::const_iterator i = phbook.cbegin(); i != phbook.cend(); i++) {		// for each record in records
-		output << ' ' << inflate_string(std::to_string(++n), 4);							// print # of element
-		(*i).print_utf(name_length, output, filler);											// print table row
-	}
-}
+
 
 std::vector<PhoneRecord>::iterator Phonebook::findRecord(const PhoneRecord & rec)
 {
@@ -315,7 +324,7 @@ void Phonebook::addCSVRecord(std::istream & stream, const std::vector<std::strin
 	while (1) {
 		size_t n = number.find(":::", start); //synonim
 		if (n == std::string::npos) { addRecord(name, number.substr(start)); break; }
-		addRecord(name, number.substr(start, n));
+		addRecord(UTFtoString(name), number.substr(start, n));
 		start = n + 3;
 	}
 
@@ -336,4 +345,19 @@ void Phonebook::importPhonebook(std::istream & stream)
 		addCSVRecord(stream, fields);
 	}
 
+}
+
+void Phonebook::exportPhonebook(std::ostream& stream)
+{
+	//TODO
+}
+
+void Phonebook::deleteRecord(std::vector<PhoneRecord>::iterator p_record)
+{
+	phbook.erase(p_record);
+}
+
+bool Phonebook::isTail(std::vector<PhoneRecord>::iterator p_record)
+{
+	return p_record==phbook.end();
 }

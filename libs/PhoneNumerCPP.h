@@ -7,6 +7,7 @@
 #include <iostream>		// input-output streams lib
 #include <vector>		// for vector container
 #include <fstream>		// for file stream 
+#include <process.h>
 #include "utf-8Converting.h"
 /// <summary>
 /// Types of string align
@@ -30,6 +31,8 @@ std::string inflate_string(std::string s, size_t w, StrAlign a=StrAlign::left, c
 /// <param name="question">- the question</param>
 /// <returns>Returns true if user agree, else - false</returns>
 bool did_user_accept(std::string question);
+
+size_t choose_list(uint16_t n, const char * list, std::ostream& out=std::cout,std::istream& in = std::cin);
 
 
 /// <summary>
@@ -227,7 +230,9 @@ public:
 		std::istream& input = std::cin,
 		std::ostream& output = std::cout,
 		std::string prompt_name = "Input nickname\n>>> ",
-		std::string prompt_number = "Input number\n>>> ");
+		std::string prompt_number = "Input number\n>>> ",
+		std::string exit_q="Do you really want to exit?",
+		const char * yes_0_no = "Yes\0No");
 
 	/// <summary>
 	/// Adds "amount" elements from inputs stream
@@ -282,13 +287,19 @@ public:
 	/// imports Phonebook from *idk* format using stream
 	/// </summary>
 	/// <param name="stream"></param>
-	void importPhonebook(std::istream& stream);	// TODO
+	void importPhonebook(std::istream& stream);
 	/// <summary>
 	/// imports Phonebook to *idk* format using stream
 	/// </summary>
 	/// <param name="stream"></param>
-	void exportPhonebook(std::ostream& stream);	// TODO
+	void exportPhonebook(std::ostream& stream);
+	/// <summary>
+	/// Deletes record
+	/// </summary>
+	/// <param name="p_record"> iterator to the record</param>
+	void deleteRecord(std::vector<PhoneRecord>::iterator p_record);
 
+	bool isTail(std::vector<PhoneRecord>::iterator p_record);
 };
 
 #endif
