@@ -300,6 +300,7 @@ public:
 	void deleteRecord(std::vector<PhoneRecord>::iterator p_record);
 
 	bool isTail(std::vector<PhoneRecord>::iterator p_record);
+	bool isHead(std::vector<PhoneRecord>::iterator p_record);
 };
 
 #endif

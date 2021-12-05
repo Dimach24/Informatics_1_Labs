@@ -160,7 +160,9 @@ int main()
 			PhoneRecord to_find;
 			to_find.setName(answer);
 			auto p_record = pb.findRecord(to_find);
+			if (pb.isHead(p_record)) { std::cout << "Телефонная книга пуста" << std::endl; break; }
 			if (pb.isTail(p_record)) { p_record--; }
+			
 			std::cout
 				<< "Имя контакта: \"" << p_record->getName() << "\"" << std::endl
 				<< "Номер: " << p_record->getNumber() << std::endl

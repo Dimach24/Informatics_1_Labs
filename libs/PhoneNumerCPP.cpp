@@ -362,5 +362,9 @@ void Phonebook::deleteRecord(std::vector<PhoneRecord>::iterator p_record)
 
 bool Phonebook::isTail(std::vector<PhoneRecord>::iterator p_record)
 {
-	return p_record==phbook.end();
+	return p_record == phbook.end();
+}
+bool Phonebook::isHead(std::vector<PhoneRecord>::iterator p_record)
+{
+	return p_record == phbook.begin();
 }
