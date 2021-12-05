@@ -339,6 +339,21 @@ void Phonebook::addCSVRecord(std::istream & stream, const std::vector<std::strin
 	}
 
 }
+
+void Phonebook::exportPhonebook(std::ostream& stream)
+{
+	//TODO
+}
+
+void Phonebook::deleteRecord(std::vector<PhoneRecord>::iterator p_record)
+{
+	phbook.erase(p_record);
+}
+
+bool Phonebook::isTail(std::vector<PhoneRecord>::iterator p_record)
+{
+	return p_record==phbook.end();
+}
 void Phonebook::importPhonebook(std::istream & stream)
 {
 	// import from csv file
