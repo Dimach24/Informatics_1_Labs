@@ -320,11 +320,11 @@ void Phonebook::addCSVRecord(std::istream & stream, const std::vector<std::strin
 		}
 	}
 	size_t start = 0;
-
+	name = UTFtoString(name);
 	while (1) {
 		size_t n = number.find(":::", start); //synonim
 		if (n == std::string::npos) { addRecord(name, number.substr(start)); break; }
-		addRecord(UTFtoString(name), number.substr(start, n));
+		addRecord(name, number.substr(start, n));
 		start = n + 3;
 	}
 
@@ -351,7 +351,7 @@ void Phonebook::exportPhonebook(std::ostream& stream)
 {
 	stream << "Name,Phone 1 - Value" << std::endl;
 	for (auto r : phbook) {
-		stream << '"' << r.getName() << "\'," << r.getNumber() << std::endl;
+		stream << '"' << r.getName() << "\"," << r.getNumber() << std::endl;
 	}
 }
 
