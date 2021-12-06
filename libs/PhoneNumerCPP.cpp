@@ -147,13 +147,6 @@ void PhoneRecord::print(size_t name_length, std::ostream& output, char filler) c
 	std::string num = inflate_string(getNumber(), 20, StrAlign::right, filler);		// format number
 	output << name << num << '\n';													// output
 }
-void PhoneRecord::print_utf(size_t name_length, std::ostream& output, char filler) const
-{
-	std::string name = UTFtoString(nickname);										// convert from unicode
-	name = inflate_string(name, name_length, StrAlign::left, filler);				// format name
-	std::string num = inflate_string(getNumber(), 20, StrAlign::right, filler);		// format number
-	output << name << num << '\n';													// output
-}
 
 
 // There is definition of comparison operators below

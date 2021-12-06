@@ -264,8 +264,6 @@ public:
 	/// <param name="filler">stream</param>
 	void print(size_t name_length = 0, std::ostream& output = std::cout, char filler = ' ');
 
-	void print_utf(size_t name_length = 0, std::ostream& output = std::cout, char filler = ' ');
-
 	/// <summary>
 	/// Binary search
 	/// Find nearest record (lexicographically) in the book
