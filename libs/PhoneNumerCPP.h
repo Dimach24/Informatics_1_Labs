@@ -159,7 +159,6 @@ public:
 	/// <param name="filler">fills space with it</param>
 	void print(size_t name_length, std::ostream& output, char filler = ' ') const;
 
-	void print_utf(size_t name_length, std::ostream& output = std::cout, char filler=' ') const;
 };
 
 // Compairing operators deprications
