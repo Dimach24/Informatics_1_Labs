@@ -24,6 +24,7 @@
     <ProjectGuid>{839fc57b-8fb3-49aa-bef0-019a1228bce3}</ProjectGuid>
     <RootNamespace>importexport</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>phonebook_app</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
