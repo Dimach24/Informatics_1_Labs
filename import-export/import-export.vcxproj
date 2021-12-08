@@ -142,7 +142,7 @@
   <ItemGroup>
     <ClCompile Include="..\libs\PhoneNumerCPP.cpp" />
     <ClCompile Include="..\libs\utf-8Converting.cpp" />
-    <ClCompile Include="import-export.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\libs\PhoneNumerCPP.h" />
