@@ -1,4 +1,4 @@
-﻿//import-export.cpp
+﻿//main.cpp
 #include "../libs/PhoneNumerCPP.h"		// for working with phonebook
 #include <iostream>						// for working with input/output streams
 										// and console i/o streams
