@@ -335,6 +335,12 @@ public:
 	/// <param name="p_record"></param>
 	/// <returns></returns>
 	bool isHead(std::vector<PhoneRecord>::iterator p_record);
+
+	/// <summary>
+	/// Returns if phonebook is empty
+	/// </summary>
+	/// <returns></returns>
+	bool isEmpty();
 };
 
 #endif

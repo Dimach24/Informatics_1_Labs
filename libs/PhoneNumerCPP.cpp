@@ -371,3 +371,8 @@ bool Phonebook::isHead(std::vector<PhoneRecord>::iterator p_record)
 {
 	return p_record == phbook.begin();	// is it the first element
 }
+
+bool Phonebook::isEmpty()
+{
+	return phbook.empty();
+}

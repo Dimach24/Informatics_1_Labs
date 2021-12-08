@@ -150,19 +150,19 @@ int main()
 		}
 		case 7:
 		{
+			if (pb.isEmpty()) {				// if phonebook is empty
+				std::cout << "Телефонная книга пуста" << std::endl;	//message
+				break;								// end of the action
+			}
 			std::cout << "Введите имя контакта" << std::endl << ">>> ";	//prompt for input
 			getline(std::cin, answer);				// get contact name
 			PhoneRecord to_find;					// Phone record with the same name as got
 			to_find.setName(answer);				// set this name
 			auto p_record = pb.findRecord(to_find);	// place for iterator to the record
-
+	
 			if (pb.isTail(p_record)) {				// if it's the .end() of phoneebok
 				p_record--;
 				// set it to the last element
-				if (pb.isHead(p_record)) {				// if it's the start of the phonebook
-					std::cout << "Телефонная книга пуста" << std::endl;	//message
-					break;								// end of the action
-				}
 			}
 			std::cout			// output and prompt for action choosing
 				<< "Имя контакта: \"" << p_record->getName() << "\"" << std::endl
