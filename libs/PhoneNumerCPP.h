@@ -51,7 +51,7 @@ size_t choose_list(uint16_t n, const char * list, std::ostream& out=std::cout,st
 /// <param name="from">- index of the start of the field</param>
 /// <param name="sep">- separation char</param>
 /// <returns>pair of the field and index of the next one</returns>
-std::pair<std::string, size_t> get_csv_field(const std::string& s, size_t from, char sep=',');
+std::pair<std::string, size_t> getCSVField(const std::string& s, size_t from, char sep=',');
 
 /// <summary>
 /// Class explaning phonebook record
