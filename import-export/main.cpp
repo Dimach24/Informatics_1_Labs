@@ -23,6 +23,8 @@ int main()
 			"Вывести в файл\0Экспортировать (Google csv)\0Найти номер\0Выйти")) {	// choose action
 		case 1:							// console input
 		{
+			std::cout << "Для окончания ввода в качестве номера телефона укажите \"0\"" << std::endl;
+										// message
 			pb.input					// input phonebook
 			(
 				"0",
