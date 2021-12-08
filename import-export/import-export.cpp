@@ -161,7 +161,12 @@ int main()
 				break;								// end of the action
 			}
 			if (pb.isTail(p_record)) {				// if it's the .end() of phoneebok
-				p_record--;							// set it to the last element
+				p_record--;
+				// set it to the last element
+				if (pb.isHead(p_record)) {				// if it's the start of the phonebook
+					std::cout << "Телефонная книга пуста" << std::endl;	//message
+					break;								// end of the action
+				}
 			}
 
 			std::cout			// output and prompt for action choosing
