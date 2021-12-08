@@ -3,8 +3,11 @@
 void UTFconvert(const char str[], size_t n, char* out, char fill_unknown_with)
 {
 	if (!n) { n = strlen(str); }			// calculate string length if n is a NULL						
-	wchar_t* wide_buffer = new wchar_t[n];	// buffer declaration and allocation
-	MultiByteToWideChar(CP_UTF8, MB_PRECOMPOSED, str, -1, wide_buffer, n);
+	wchar_t* wide_buffer = nullptr;			// buffer declaration and allocation
+	size_t wn =MultiByteToWideChar(CP_UTF8, MB_PRECOMPOSED, str, n, wide_buffer, 0);
+											// calculate wide char c-string size
+	wide_buffer = new wchar_t[wn];			// buffer allocate
+	size_t wn = MultiByteToWideChar(CP_UTF8, MB_PRECOMPOSED, str, n, wide_buffer, wn);
 						// convert string from utf-8 to utf-16 and write it to the buffer
 	WideCharToMultiByte(1251, NULL, wide_buffer, -1, out, n, &fill_unknown_with, NULL);
 						// convert string from utf-16 to cp1251 and write to the *out
@@ -37,19 +40,21 @@ std::string UTFtoString(const std::string& str, char fill_unknown_with)
 
 std::string StringToUTF(std::string s)
 {
-	static char MYCHAR = '@';	// unknow chars will be replaced with this char
-	size_t n = s.size();		// size of the string
-	wchar_t* wide_buffer = new wchar_t[n];
-								// the buffer declaration and allocation
-	MultiByteToWideChar(1251, MB_PRECOMPOSED, s.c_str(), -1, wide_buffer, n);
-								// converting from codepage 1251 to utf 16 and writing it 
-								// to the buffer
-	char* buffer = new char[n * 4];		// one more buffer
-	WideCharToMultiByte(CP_UTF8, NULL, wide_buffer, -1, buffer, 4*n, &MYCHAR, NULL);
-								// convert string from utf-16 buffer, to the cp 1251 
-								// and write it to the second buffer
-	delete[] wide_buffer;		// free utf-16 buffer
-	std::string result = buffer;// create std::string and write result c-string to it
-	delete[] buffer;			// free result buffer
-	return result;				// return result std::string
+	wchar_t* wide_buffer=nullptr;		// wchar pointer declaration
+	size_t n = MultiByteToWideChar(1251, NULL, s.c_str(), -1, wide_buffer, 0);
+										// calculate size of the c-wstring
+	wide_buffer = new wchar_t[n];		// buffer memory allocation
+	MultiByteToWideChar(1251, NULL, s.c_str(), -1, wide_buffer, n);
+										// converting from codepage 1251 to utf 16 and writing it 
+										// to the buffer with saving amount of wchars
+	char* buffer = nullptr;				// char pointer declaration
+	n=WideCharToMultiByte(CP_UTF8, NULL, wide_buffer, n, buffer, 0, NULL, NULL);
+	buffer = new char[n];				// buffer allocation
+	WideCharToMultiByte(CP_UTF8, NULL, wide_buffer, n, buffer, n, NULL, NULL);
+										// convert string from utf-16 buffer, to the cp 1251 
+										// and write it to the second buffer
+	delete[] wide_buffer;				// free utf-16 buffer
+	std::string result = buffer;		// create std::string and write result c-string to it
+	delete[] buffer;					// free result buffer
+	return result;						// return result std::string
 }
