@@ -156,10 +156,7 @@ int main()
 			PhoneRecord to_find;					// Phone record with the same name as got
 			to_find.setName(answer);				// set this name
 			auto p_record = pb.findRecord(to_find);	// place for iterator to the record
-			if (pb.isHead(p_record)) {				// if it's the start of the phonebook
-				std::cout << "Телефонная книга пуста" << std::endl;	//message
-				break;								// end of the action
-			}
+
 			if (pb.isTail(p_record)) {				// if it's the .end() of phoneebok
 				p_record--;
 				// set it to the last element
