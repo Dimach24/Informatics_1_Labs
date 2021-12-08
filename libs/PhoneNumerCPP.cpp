@@ -317,14 +317,20 @@ void Phonebook::addCSVRecord(std::istream & stream, const std::vector<std::strin
 	}
 	size_t start = 0;							// start index in the number string			
 	name = UTFtoString(name);					// convert name string according to 1251 codepage
-	while (1) {									// always
-		size_t n = number.find(":::", start);	// look for the second number
-		if (n == std::string::npos) {			// if there is not more numbers
-			addRecord(name, number.substr(start));// add record with this number
-			break;								// exit
-		}										// else
-		addRecord(name, number.substr(start, n));// split the string and add record with this number
-		start = n + 3;							// next time start with next number
+	if (number.find(":::") != std::string::npos) {	// if more than 1 number defined
+		while (1) {									// always
+			size_t i = 1;
+			size_t n = number.find(":::", start);	// look for the second number
+			if (n == std::string::npos) {			// if there is not more numbers
+				addRecord(name+" ("+std::to_string(i++)+")", number.substr(start));
+													// add record with this number
+				break;								// exit
+			}										// else
+			addRecord(name, number.substr(start, n));//split the string and add record with this number
+			start = n + 3;							// next time start with next number
+		}
+	} else {
+		addRecord(name, number);					// add record
 	}
 
 }
@@ -335,8 +341,8 @@ void Phonebook::importPhonebook(std::istream & stream)
 	std::vector<std::string> fields;			// vector for csv fields
 	size_t start_i = 0;							// the field strart index
 	while (buf.size() > start_i) {				// while it's not the end of the string
-		std::pair<std::string, size_t> tmp = get_csv_field(buf, start_i);	
-												// get this field and index of the next one
+		std::pair<std::string, size_t> tmp = get_csv_field(buf, start_i);
+		// get this field and index of the next one
 		fields.push_back(tmp.first);			// add the field name to the fields vector
 		start_i = tmp.second;					// set next field start index
 	}
@@ -349,7 +355,7 @@ void Phonebook::importPhonebook(std::istream & stream)
 
 void Phonebook::exportPhonebook(std::ostream & stream)
 {
-	stream << StringToUTF("Name,Phone 1 - Value")<< std::endl;			// csv header
+	stream << StringToUTF("Name,Phone 1 - Value") << std::endl;			// csv header
 	for (auto r : phbook) {									// for each record in phonebook
 		stream << StringToUTF('"' + r.getName() + "\"," + r.getNumber()) << std::endl;
 		// make csv representation of the record,
