@@ -1,10 +1,9 @@
 ﻿//import-export.cpp
-#include "../libs/utf-8Converting.h"
-#include "../libs/PhoneNumerCPP.h"
-#include <iostream>
-#include <fstream>
-#include <process.h>
-#include "../libs/PhoneNumerCPP.h"
+#include "../libs/PhoneNumerCPP.h"		// for working with phonebook
+#include <iostream>						// for working with input/output streams
+										// and console i/o streams
+#include <fstream>						// for working with file streams
+#include <process.h>					// for 'system' functions
 #include <consoleapi2.h>				// for console codepages settings
 
 int main()
@@ -165,7 +164,6 @@ int main()
 					break;								// end of the action
 				}
 			}
-
 			std::cout			// output and prompt for action choosing
 				<< "Имя контакта: \"" << p_record->getName() << "\"" << std::endl
 				<< "Номер: " << p_record->getNumber() << std::endl
@@ -192,7 +190,7 @@ int main()
 			case 3:									// change the number
 			{
 				std::cout << "Введите новый номер контакта" << std::endl << ">>> ";
-													// prompt for input
+				// prompt for input
 				getline(std::cin, answer);			// input the number
 				to_find.setNumber(answer, true);	// filter and remember new number
 				std::cout							// confirmation

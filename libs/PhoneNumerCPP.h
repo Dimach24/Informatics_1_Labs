@@ -7,8 +7,9 @@
 #include <iostream>		// input-output streams lib
 #include <vector>		// for vector container
 #include <fstream>		// for file stream 
-#include <process.h>
+#include <process.h>	// for 'system' function
 #include "utf-8Converting.h"
+						// for codepages converting
 /// <summary>
 /// Types of string align
 /// </summary>
@@ -32,8 +33,25 @@ std::string inflate_string(std::string s, size_t w, StrAlign a=StrAlign::left, c
 /// <returns>Returns true if user agree, else - false</returns>
 bool did_user_accept(std::string question);
 
+/// <summary>
+/// Prints indexed strings list and wait for answer (number from 1 to n)
+/// </summary>
+/// <param name="n">- number of the list elements. 
+/// N.B. IF AMOUNT OF LIST ELEMENTS IS LESS THEN n YOU FACE TO UNDEFINED BEHAVIOUR</param>
+/// <param name="list">- char*, elements of the list must be separated by '\0'</param>
+/// <param name="out">output stream</param>
+/// <param name="in">input stream</param>
+/// <returns>choice number</returns>
 size_t choose_list(uint16_t n, const char * list, std::ostream& out=std::cout,std::istream& in = std::cin);
 
+/// <summary>
+/// Extracts exactly 1 field from the string
+/// </summary>
+/// <param name="s">- the string with fields</param>
+/// <param name="from">- index of the start of the field</param>
+/// <param name="sep">- separation char</param>
+/// <returns>pair of the field and index of the next one</returns>
+std::pair<std::string, size_t> get_csv_field(const std::string& s, size_t from, char sep=',');
 
 /// <summary>
 /// Class explaning phonebook record
@@ -59,6 +77,7 @@ protected:
 	/// 1	if second record name is more than first.
 	/// </returns>
 	friend int8_t compair(const PhoneRecord& a, const PhoneRecord& b);
+
 
 
 	/// <summary>
@@ -277,26 +296,44 @@ public:
 	/// <returns>max name lenght</returns>
 	size_t maxNameLength();
 
-
+	/// <summary>
+	/// Adds record with fields name (there must be "Name" and "Phone 1 - Value")
+	/// with field values from the stream.
+	/// </summary>
+	/// <param name="stream"></param>
+	/// <param name="fields"></param>
 	void addCSVRecord(std::istream& stream, const std::vector<std::string>& fields);
 
 	/// <summary>
-	/// imports Phonebook from *idk* format using stream
+	/// imports Phonebook from Google csv format using stream
 	/// </summary>
 	/// <param name="stream"></param>
 	void importPhonebook(std::istream& stream);
+
 	/// <summary>
 	/// imports Phonebook to *idk* format using stream
 	/// </summary>
 	/// <param name="stream"></param>
 	void exportPhonebook(std::ostream& stream);
+
 	/// <summary>
 	/// Deletes record
 	/// </summary>
 	/// <param name="p_record"> iterator to the record</param>
 	void deleteRecord(std::vector<PhoneRecord>::iterator p_record);
 
+	/// <summary>
+	/// Checks if it's the end iterator
+	/// </summary>
+	/// <param name="p_record"></param>
+	/// <returns></returns>
 	bool isTail(std::vector<PhoneRecord>::iterator p_record);
+
+	/// <summary>
+	/// Checks if it's the first element
+	/// </summary>
+	/// <param name="p_record"></param>
+	/// <returns></returns>
 	bool isHead(std::vector<PhoneRecord>::iterator p_record);
 };
 
