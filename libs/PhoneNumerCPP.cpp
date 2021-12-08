@@ -278,7 +278,7 @@ size_t Phonebook::maxNameLength()
 }
 
 
-std::pair<std::string, size_t> get_csv_field(const std::string & s, size_t from, char sep)
+std::pair<std::string, size_t> getCSVField(const std::string & s, size_t from, char sep)
 {
 	std::string result = "";			// string for result
 	bool is_in_quotes = false;			// is there quote before
@@ -301,7 +301,7 @@ void Phonebook::addCSVRecord(std::istream & stream, const std::vector<std::strin
 	std::vector<std::string> contact_values;	// fields values vector
 	getline(stream, buf, '\n');					// get contact fields to the buffer
 	while (buf.size() > start_i) {				// while end of the line is not reached
-		std::pair<std::string, size_t> tmp = get_csv_field(buf, start_i);
+		std::pair<std::string, size_t> tmp = getCSVField(buf, start_i);
 		// get field
 		contact_values.push_back(tmp.first);	// add the field
 		start_i = tmp.second;					// set next field start index
@@ -341,7 +341,7 @@ void Phonebook::importPhonebook(std::istream & stream)
 	std::vector<std::string> fields;			// vector for csv fields
 	size_t start_i = 0;							// the field strart index
 	while (buf.size() > start_i) {				// while it's not the end of the string
-		std::pair<std::string, size_t> tmp = get_csv_field(buf, start_i);
+		std::pair<std::string, size_t> tmp = getCSVField(buf, start_i);
 		// get this field and index of the next one
 		fields.push_back(tmp.first);			// add the field name to the fields vector
 		start_i = tmp.second;					// set next field start index
