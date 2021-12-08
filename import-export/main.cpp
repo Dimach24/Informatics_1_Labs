@@ -150,7 +150,7 @@ int main()
 			std::cout << "Экспорт завершен" << std::endl;	// end of action message
 			break;						// end of the acion
 		}
-		case 7:
+		case 7:							// find
 		{
 			if (pb.isEmpty()) {				// if phonebook is empty
 				std::cout << "Телефонная книга пуста" << std::endl;	//message
