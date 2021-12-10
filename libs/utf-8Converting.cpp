@@ -8,7 +8,7 @@ void UTFconvert(const char str[], size_t n, char* out, char fill_unknown_with)
 	size_t wn =MultiByteToWideChar(CP_UTF8, MB_PRECOMPOSED, str, n, wide_buffer, 0);
 											// calculate wide char c-string size
 	wide_buffer = new wchar_t[wn];			// buffer allocate
-	size_t wn = MultiByteToWideChar(CP_UTF8, MB_PRECOMPOSED, str, n, wide_buffer, wn);
+	MultiByteToWideChar(CP_UTF8, MB_PRECOMPOSED, str, n, wide_buffer, wn);
 						// convert string from utf-8 to utf-16 and write it to the buffer
 	WideCharToMultiByte(1251, NULL, wide_buffer, -1, out, n, &fill_unknown_with, NULL);
 						// convert string from utf-16 to cp1251 and write to the *out
