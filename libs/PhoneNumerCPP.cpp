@@ -355,7 +355,7 @@ void Phonebook::importPhonebook(std::istream & stream)
 
 void Phonebook::exportPhonebook(std::ostream & stream)
 {
-	stream << StringToUTF("Name,Phone 1 - Value") << std::endl;			// csv header
+	stream << StringToUTF("Name,Phone") << std::endl;			// csv header
 	for (auto r : phbook) {									// for each record in phonebook
 		stream << StringToUTF('"' + r.getName() + "\"," + r.getNumber()) << std::endl;
 		// make csv representation of the record,
