@@ -42,23 +42,23 @@ std::string UTFtoString(const std::string& str, char fill_unknown_with)
 
 std::string StringToUTF(std::string s)
 {
-	wchar_t* wide_buffer=nullptr;		// wchar pointer declaration
-	size_t n = MultiByteToWideChar(1251, NULL, s.c_str(), -1, wide_buffer, 0);
-										// calculate size of the c-wstring
-	wide_buffer = new wchar_t[n+1];		// buffer memory allocation
-	wide_buffer[n]=L'\0';				// end of the string
-	MultiByteToWideChar(1251, NULL, s.c_str(), -1, wide_buffer, n);
-										// converting from codepage 1251 to utf 16 and writing it 
-										// to the buffer with saving amount of wchars
-	char* buffer = nullptr;				// char pointer declaration
-	n=WideCharToMultiByte(CP_UTF8, NULL, wide_buffer, n, buffer, 0, NULL, NULL);
-	buffer = new char[n+1];				// buffer allocation
-	buffer[n] = '\0';					// end of the string
-	WideCharToMultiByte(CP_UTF8, NULL, wide_buffer, n, buffer, n, NULL, NULL);
-										// convert string from utf-16 buffer, to the cp 1251 
-										// and write it to the second buffer
-	delete[] wide_buffer;				// free utf-16 buffer
-	std::string result = buffer;		// create std::string and write result c-string to it
-	delete[] buffer;					// free result buffer
-	return result;						// return result std::string
+	wchar_t *wide_buffer = nullptr;				// utf16 buffer declaration
+	size_t wn = MultiByteToWideChar(1251, NULL, s.c_str(), s.size(), wide_buffer, 0);	
+												// calculate buffer size
+	wide_buffer = new wchar_t[wn + 1];			// allocate memroy for the buffer
+	MultiByteToWideChar(1251, NULL, s.c_str(), s.size(), wide_buffer, wn);
+												// convert cp1251 string to the utf-16 string 
+												// and write it to the buffer
+	wide_buffer[wn] = L'\0';					// end of the string
+	char* buffer = nullptr;						// standart buffer allocation
+	size_t n = WideCharToMultiByte(CP_UTF8, NULL, wide_buffer, wn, buffer, 0, NULL, NULL);
+												// calculate buffer size
+	buffer = new char[n + 1];					// allocate memory for the buffer
+	WideCharToMultiByte(CP_UTF8, NULL, wide_buffer, wn, buffer, n, NULL, NULL);
+												// convert string from utf16 to utf8
+	buffer[n] = '\0';							// end of the string
+	delete[] wide_buffer;						// free the wide buffer memory 
+	std::string result = buffer;				// declaration of the result string with initiaization
+	delete[] buffer;							// free the short buffer memry 
+	return result;								// return result
 }
