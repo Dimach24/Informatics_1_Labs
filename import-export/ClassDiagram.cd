@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PhoneRecord">
+    <Position X="4.5" Y="0.5" Width="2.75" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Struct Name="PhoneRecord::__unnamed_struct_0003_1">
+        <TypeIdentifier>
+          <NewMemberFileName>C:\Users\D.mon\Documents\учеба\инфа\Chaminov_Dmeatry\Labs\libs\PhoneNumerCPP.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Struct Name="PhoneRecord::Field">
+        <TypeIdentifier>
+          <NewMemberFileName>C:\Users\D.mon\Documents\учеба\инфа\Chaminov_Dmeatry\Labs\libs\PhoneNumerCPP.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAQEAABAIAEAAAAAAAABBAAAAEAAAAAQA=</HashCode>
+      <FileName>C:\Users\D.mon\Documents\учеба\инфа\Chaminov_Dmeatry\Labs\libs\PhoneNumerCPP.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Phonebook">
+    <Position X="1.25" Y="1.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAEAAACACAAACBQAAgCAAAQBAAABAAAAEgAAAAQAA=</HashCode>
+      <FileName>C:\Users\D.mon\Documents\учеба\инфа\Chaminov_Dmeatry\Labs\libs\PhoneNumerCPP.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="StrAlign" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIABAAAAAAAAAAgAA=</HashCode>
+      <FileName>C:\Users\D.mon\Documents\учеба\инфа\Chaminov_Dmeatry\Labs\libs\PhoneNumerCPP.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
